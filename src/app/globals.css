@@ -2,26 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer utilities {
+	.button {
+		@apply px-4 py-2 text-center rounded font-bold transition-all;
+	}
+
+	.button-square {
+		@apply text-center font-bold transition-all;
+	}
+
+	.button-black {
+		@apply text-white bg-black hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-gray-400;
+	}
+
+	.button-white {
+		@apply shadow-md text-black bg-white hover:bg-slate-100 focus:bg-slate-100 focus:outline-gray-400;
+	}
+
+	.button-blue {
+		@apply text-white bg-blue-600 hover:bg-blue-500 focus:bg-blue-500 focus:outline-gray-700;
+	}
+
+	.button-blue-transparent {
+		@apply text-blue-400 bg-blue-600/30 hover:bg-blue-600/50 focus:bg-blue-600/50 focus:outline-blue-600;
+	}
+
+	.button-sky {
+		@apply text-white bg-sky-500 hover:bg-sky-400 focus:bg-sky-400 focus:outline-gray-700;
+	}
+
+	.button-sky-transparent {
+		@apply text-sky-500 bg-sky-500/30 hover:bg-sky-500/50 focus:bg-sky-500/50 focus:outline-sky-500;
+	}
+
+	.button-rose {
+		@apply text-white bg-rose-600 hover:bg-rose-500 focus:bg-rose-500 focus:outline-gray-700;
+	}
+
+	.button-rose-transparent {
+		@apply text-rose-600 bg-rose-600/30 hover:bg-rose-600/50 focus:bg-rose-600/50 focus:outline-rose-600;
+	}
+
+	.button-teal {
+		@apply text-white bg-teal-600 hover:bg-teal-500 focus:bg-teal-500 focus:outline-gray-700;
+	}
+
+	.button-teal-transparent {
+		@apply text-teal-400 bg-teal-600/30 hover:bg-teal-600/50 focus:bg-teal-600/50 focus:outline-teal-600;
+	}
+
+	.button-indigo {
+		@apply text-white bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-500 focus:outline-gray-700;
+	}
+
+	.button-indigo-transparent {
+		@apply text-indigo-600 bg-indigo-600/30 hover:bg-indigo-600/50 focus:bg-indigo-600/50 focus:outline-indigo-600;
+	}
+
+	.active-link {
+		@apply bg-gradient-to-bl text-white from-indigo-600 to-purple-600 dark:from-teal-600 dark:to-emerald-400;
+	}
+	.not-active-link {
+		@apply button-indigo-transparent dark:button-teal-transparent;
+	}
+
+	.grid-rows-chat {
+		grid-template-rows: auto 1fr auto;
+	}
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.scrollbar-w-2::-webkit-scrollbar {
+	width: 0.25rem;
+	height: 0.25rem;
+	padding: 1px;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.scrollbar-track-blue-lighter::-webkit-scrollbar-track {
+	@apply bg-indigo-500/50 dark:bg-teal-500/50;
+}
+
+.scrollbar-thumb-blue::-webkit-scrollbar-thumb {
+	@apply bg-indigo-600 dark:bg-teal-500;
+}
+
+.scrollbar-thumb-rounded::-webkit-scrollbar-thumb {
+	border-radius: 0.25rem;
 }
