@@ -22,6 +22,7 @@ const FriendRequestsSideBarOption: FC<Props> = ({
 		pusherClient.subscribe(
 			toPusherKey(`user:${sessionId}:incoming_friend_requests`)
 		);
+
 		pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
 
 		const friendRequestHandler = () => {

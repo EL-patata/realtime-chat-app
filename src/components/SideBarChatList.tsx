@@ -22,6 +22,8 @@ interface ExtendedMessage extends Message {
 const SideBarChatList: FC<Props> = ({ friends, sessionId }) => {
 	const [unseenMessages, setUnseenMessages] = useState<Message[]>([]);
 
+	const [activeChats, setActiveChats] = useState<User[]>(friends);
+
 	const pathName = usePathname();
 
 	const anchorRef = useRef<HTMLAnchorElement>(null!);
@@ -43,8 +45,8 @@ const SideBarChatList: FC<Props> = ({ friends, sessionId }) => {
 
 		pusherClient.subscribe(toPusherKey(`user:${sessionId}:friends`));
 
-		function newFriendHandler() {
-			router.refresh();
+		function newFriendHandler(newFriend: User) {
+			setActiveChats((prev) => [...prev, newFriend]);
 		}
 
 		function chatHandler(message: ExtendedMessage) {

@@ -3,6 +3,7 @@ import { pusherClient } from '@/libs/pusher';
 import { toPusherKey } from '@/libs/utils';
 import { Message } from '@/libs/validations/messages';
 import { FC, useEffect, useRef, useState } from 'react';
+import { format } from 'date-fns';
 
 type Props = {
 	initialMessages: Message[];
@@ -29,6 +30,10 @@ const Messages: FC<Props> = ({ initialMessages, sessionId, chatId }) => {
 			pusherClient.unbind('incoming-message', messageHandler);
 		};
 	}, [chatId]);
+
+	function formatTimeStamp(date: number) {
+		return format(date, 'HH:mm');
+	}
 
 	return (
 		<div
@@ -73,7 +78,9 @@ const Messages: FC<Props> = ({ initialMessages, sessionId, chatId }) => {
 								>
 									{message.text}
 									{` `}
-									<span className="ml-2 text-xs">{message.timestamp}</span>
+									<span className="ml-2 text-xs">
+										{formatTimeStamp(message.timestamp)}
+									</span>
 								</span>
 							</div>
 						</div>
