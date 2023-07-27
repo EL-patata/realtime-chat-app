@@ -29,13 +29,15 @@ const Login: FC<Props> = () => {
 				<h1 className="text-2xl">Welcome to zuccsucc</h1>
 				<div className="flex flex-col gap-4">
 					<button
-						className="button button-white flex gap-2 items-center"
+						disabled={isLoading}
+						className="button button-white flex gap-2 items-center disabled:opacity-50"
 						onClick={() => loginWithSocials('google')}
 					>
 						<FcGoogle className="text-2xl" /> Sign in with Google
 					</button>
 					<button
-						className="button button-black flex gap-2 items-center"
+						disabled={isLoading}
+						className="button button-black flex gap-2 items-center disabled:opacity-50"
 						onClick={() => loginWithSocials('github')}
 					>
 						<BsGithub className="text-2xl" /> Sign in with GitHub

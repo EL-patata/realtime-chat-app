@@ -6,6 +6,7 @@ import { Message } from '@/types/databaseTypes';
 import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 
@@ -13,6 +14,8 @@ export default async function page() {
 	const session = await getServerSession(authOptions);
 
 	const friends = await getFriendsByUserId(session?.user?.id as string);
+
+	if (!session) redirect(`/login`);
 
 	const friendsWithLastMessage = await Promise.all(
 		friends.map(async (friend) => {
@@ -31,8 +34,6 @@ export default async function page() {
 			};
 		})
 	);
-
-	console.log(friendsWithLastMessage);
 
 	return (
 		<div className="flex flex-col items-start p-4 gap-2">
